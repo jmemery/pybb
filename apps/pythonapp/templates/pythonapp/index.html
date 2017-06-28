@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Login/Register</title>
+	<style>
+		label {
+			display: block;
+			width: 150px;
+		}
+	</style>
+</head>
+<body>
+	<h1>Please Login or Register</h1>
+
+	<fieldset>
+		<legend>Register</legend>
+		<form action="/register" method="post">
+			{% csrf_token %}
+			<label for="first_name">First Name<input type="text" name="first_name"></label>
+			<label for="last_name">Last Name<input type="text" name="last_name"></label>
+			<label for="email">Email<input type="email" name="email"></label>
+			<label for="birthday">Birthday<input type="date" name="birthday"></label>
+			<label for="password">Password<input type="password" name="password"></label>
+			<label for="confirm_password">Confirm Password<input type="password" name="confirm_password"></label>
+			<button>Register</button>
+		</form>
+	</fieldset>
+
+	<fieldset>
+		<legend>Login</legend>
+		<form action="/login" method="post">
+			{% csrf_token %}
+			<label for="email">Email <input type="email" name="email"></label>
+			<label for="password">Password <input type="password" name="password"></label>
+			<button>Login</button>
+		</form>
+	</fieldset>
+	{% if messages %}
+		{% for message in messages %}
+			<p>{{ message }}</p>
+		{% endfor %}
+	{% endif %}
+</body>
+</html>
